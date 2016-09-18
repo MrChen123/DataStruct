@@ -1,0 +1,70 @@
+//
+//  XhNetWorking.m
+//  JiangXiResource
+//
+//  Created by xinjie on 16/9/2.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+#import "XhNetWorking.h"
+#import "YTKRequest.h"
+@interface XhNetWorking ()
+
+@property (nonatomic , copy) NSString *url;
+@property (nonatomic , strong) NSDictionary *params;
+@property (nonatomic , assign) YTKRequestMethod method;
+@property (nonatomic , assign) NSInteger requestTag;
+
+@end
+
+@implementation XhNetWorking
+
+
+- (instancetype)initWithUrl:(NSString *)url
+                     params:(NSMutableDictionary *)params
+                        tag:(NSInteger)requestTag
+              requestMethod:(YTKRequestMethod)method
+{
+    self = [super init];
+    
+    if (self) {
+        self.url = url;
+        self.params = params;
+        self.requestTag = requestTag;
+        self.method = method;
+    }
+    return self;
+}
+
+
+- (YTKRequestMethod)requestMethod
+{
+    return self.method;
+}
+
+- (NSString *)requestUrl
+{
+    return self.url;
+}
+
+- (id)requestArgument
+{
+    return self.params;
+}
+
+
++ (instancetype)requestUrl:(NSString *)url params:(NSMutableDictionary *)params tag:(NSInteger)requestTag{
+    return [self requestUrl:url params:params tag:requestTag requestMethod:YTKRequestMethodPost];
+}
+
++ (instancetype)requestUrl:(NSString *)url
+                     params:(NSMutableDictionary *)params
+                        tag:(NSInteger)requestTag
+              requestMethod:(YTKRequestMethod)method{
+    
+    XhNetWorking *nextWorking = [[XhNetWorking alloc] initWithUrl:url params:params tag:requestTag requestMethod:method];
+    
+    return nextWorking;
+}
+
+@end

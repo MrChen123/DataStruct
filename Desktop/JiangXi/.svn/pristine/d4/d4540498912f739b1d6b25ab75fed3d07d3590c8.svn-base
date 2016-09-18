@@ -1,0 +1,27 @@
+//
+//  SearchResourcesPortView.h
+//  JiangXiResource
+//
+//  Created by xinjie on 16/9/1.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+typedef NS_ENUM(NSUInteger, SearchResourcesPortViewBtnTag) {
+    FreePortBtnTag,                 // 空闲端口
+    AllPortBtnTag,                  // 全部端口
+    TitleBackViewTag,                // titleBackView手势
+};
+
+@protocol SearchResourcesPortViewDelegate <NSObject>
+- (void)searchResourcesPortViewSelectedCell:(NSDictionary *)dataDic;
+- (void)searchResourcesPortViewBtnClick:(SearchResourcesPortViewBtnTag)btnTag;
+@end
+
+
+@interface SearchResourcesPortView : UIView
+
+@property (nonatomic , strong) NSString *string;
+@property (nonatomic , weak) id<SearchResourcesPortViewDelegate>delegate;
+@property (nonatomic , strong) NSMutableArray *portListArray;
+@end

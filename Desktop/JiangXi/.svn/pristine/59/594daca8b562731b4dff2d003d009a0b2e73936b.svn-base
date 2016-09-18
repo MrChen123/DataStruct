@@ -1,0 +1,12 @@
+platform:ios,'7.0'
+target "JiangXiResource" do
+
+  pod 'JSONModel'
+  pod 'Masonry'
+  pod 'MJRefresh'
+  pod 'YTKNetwork'
+  pod 'MBProgressHUD' 
+ 
+  inhibit_all_warnings!
+
+end

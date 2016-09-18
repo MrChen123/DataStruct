@@ -1,0 +1,42 @@
+//
+//  XhNetWorking.h
+//  JiangXiResource
+//
+//  Created by xinjie on 16/9/2.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "YTKRequest.h"
+@interface XhNetWorking : YTKRequest
+
+/**
+ *  请求
+ *
+ *  @param url        url
+ *  @param params     params
+ *  @param requestTag tag值
+ *  @param method     post/get
+ *
+ *  @return   YTKRequest
+ */
++ (instancetype)requestUrl:(NSString *)url
+                    params:(NSMutableDictionary *)params
+                       tag:(NSInteger)requestTag;
+
+/**
+ *  请求
+ *
+ *  @param url        url
+ *  @param params     params
+ *  @param requestTag tag值
+ *  @param method     post/get
+ *
+ *  @return   YTKRequest
+ */
++ (instancetype)requestUrl:(NSString *)url
+                    params:(NSMutableDictionary *)params
+                       tag:(NSInteger)requestTag
+             requestMethod:(YTKRequestMethod)method;
+
+@end

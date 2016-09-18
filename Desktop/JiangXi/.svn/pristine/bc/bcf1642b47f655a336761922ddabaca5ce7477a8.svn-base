@@ -1,0 +1,89 @@
+//
+//  HistoryView.m
+//  JiangXiResource
+//
+//  Created by 信辉科技 on 16/9/7.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+#import "HistoryView.h"
+#import "Masonry.h"
+#import "UIColor+Ext.h"
+
+@interface HistoryView ()
+<
+UITableViewDelegate,
+UITableViewDataSource
+>
+@property (nonatomic, strong) UILabel *label;           // 历史记录Label
+@property (nonatomic, strong) UITableView *tableView;   // 历史记录tableView
+@end
+
+@implementation HistoryView
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self uiConfig];
+    }
+    return self;
+}
+
+- (void)uiConfig
+{
+    self.label = ({
+        UILabel *label = [UILabel new];
+        label.numberOfLines = 0;
+        label.font = [UIFont systemFontOfSize:20];
+        label.textColor = UIColorFromHex(0x056FC2);
+        label.text = @"   历史记录";
+        
+        [self addSubview:label];
+        
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(self).insets(UIEdgeInsetsZero);
+            make.height.mas_equalTo(50);
+        }];
+        label;
+    });
+    
+    self.tableView = ({
+        UITableView *table = [UITableView new];
+        table.delegate = self;
+        table.dataSource = self;
+        [table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellId"];
+        table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        
+        [self addSubview:table];
+        
+        [table mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self).insets(UIEdgeInsetsZero);
+            make.top.equalTo(self.label.mas_bottom);
+        }];
+        
+        table;
+        
+    });
+}
+
+#pragma mark -----------UITableView Delegate-----------
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId"];
+    cell.textLabel.text = self.historyArray[indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.numberOfLines = 0;
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.historyArray.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _select(indexPath.row);
+}
+@end

@@ -1,0 +1,18 @@
+//
+//  ResourceMainVC.h
+//  JiangXiResource
+//
+//  Created by 信辉科技 on 16/8/29.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+/**
+ *  资源更改主界面
+ */
+#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+@class ResourceSearchModel;
+
+@interface ResourceMainVC : BaseViewController
+@property (nonatomic, strong) ResourceSearchModel *searchModell;    // 输入部分
+@end

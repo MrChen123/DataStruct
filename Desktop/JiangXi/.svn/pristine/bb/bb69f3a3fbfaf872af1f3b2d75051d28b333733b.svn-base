@@ -1,0 +1,22 @@
+//
+//  SearchEquipmentHeadView.h
+//  JiangXiResource
+//
+//  Created by xinjie on 16/8/29.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+typedef NS_ENUM(NSUInteger, TapViewTag) {
+    CityBackViewTag,            // 所属区县
+    EquipmentBackViewTag,       // 选择设备
+};
+
+@protocol SearchEquipmentHeadViewDelegate <NSObject>
+- (void)showPromptView:(TapViewTag)tag;
+@end
+
+@interface SearchEquipmentHeadView : UIView
+@property (nonatomic , weak) id<SearchEquipmentHeadViewDelegate>delegate;
+- (void)setTextString:(NSString *)textString TapViewTag:(TapViewTag)tag;
+@end

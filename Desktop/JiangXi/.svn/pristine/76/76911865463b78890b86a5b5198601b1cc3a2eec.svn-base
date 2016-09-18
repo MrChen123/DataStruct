@@ -1,0 +1,17 @@
+//
+//  CommonLogic.m
+//  JiangXiResource
+//
+//  Created by 信辉科技 on 16/9/1.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+#import "CommonLogic.h"
+#import "STTextHudTool.h"
+
+@implementation CommonLogic
++ (void)showErrorInfo:(NSString *)info
+{
+    [STTextHudTool showText:info];
+}
+@end

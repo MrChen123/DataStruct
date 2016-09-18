@@ -1,0 +1,288 @@
+//
+//  CommonDefine.h
+//  SilkStreet
+//
+//  Created by retygu on 14-9-3.
+//  Copyright (c) 2014年 retygu. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#define WeakSelf __weak typeof(self) weakSelf = self
+
+// 百度地图
+#define MYBUNDLE_NAME @ "mapapi.bundle"
+#define MYBUNDLE_PATH [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: MYBUNDLE_NAME]
+#define MYBUNDLE [NSBundle bundleWithPath: MYBUNDLE_PATH]
+
+//#define PRE_URL                 @"http://192.168.101.162:8030/irm/"     // 赵强本地
+#define PRE_URL                 @"http://192.168.120.205:7011/irmds/" // 上海分支
+//#define PRE_URL                   @"http://192.168.120.214:7009/irmds/" // 云南分支
+
+#define CurrentUrl_Key           @"CurrentUrl"                             // 用于请求的服务器路径key
+// url值
+#define CurrentUrl_Value         [[NSUserDefaults standardUserDefaults] objectForKey:CurrentUrl_Key]
+
+#define PGY_AppID                @"6d987cf5a738ce686a4482f1a39e673f"   //蒲公英使用AppID,用于检测更新
+#define XinGe_AccessID           2200181730                            //腾讯信鸽推送
+#define XinGe_AccessKey           @"IP87YBMI778P"                      //腾讯信鸽推送
+
+// 友盟退送相关
+#define UmenAppKey               @"57a012e8e0f55a2b14000c64"            // 友盟推送key
+#define UmenppMasterSecret       @"3s7mvlmkmmjgf5erc5ccvq0vjkzpu20m"
+
+#define IMG_URL                @"http://222.184.234.34:2501/"
+
+#define USER_LOGIN                  @"user/login"               //用户登录
+#define USER_VALIDATE_USER                  @"user/validateUser"               //验证用户密码
+
+#define INVENTORY_PAGE_QUERYCRITERIA   @"inventory/page/queryCriteria"     // 插叙页面(通用查询条件页面)
+#define INVENTORY_PAGE_VIEW  @"inventory/page/view"     // 收藏详情（通用查看页面）
+#define INVENTORY_PAGE_EDIT  @"inventory/page/edit"     // 维护编辑页面（通用查看页面）
+
+
+#define INVENTORY_PAGE_MAP_SEARCHRESULT  @"resource/nearBy"     // 附近资源
+#define INVENTORY_GET_COLLERTION_RECORD  @"inventory/getCollectionRecord"     // 我的收藏
+#define INVENTORY_REMOVE_COLLERTION_RECORD  @"inventory/removeCollectionRecord"     // 移除收藏
+#define INVENTORY_GET_DETAIKED_INFO  @"inventory/getDetailedInfo"     // 资源履历信息查询
+#define INVENTORY_QR_CODE  @"inventory/qrCode"     // 地图二维码扫码接口
+#define INVENTORY_GET_ENTITY_INFOFOR_FEEDBACK  @"inventory/getEntityInfoForFeedback"     // 资源问题反馈
+#define INVENTORY_SAVE_RESOUR_FEEDBACK  @"inventory/saveResourceFeedback"     // 新增资源问题反馈
+#define INVENTORY_SESTEM_SUBMIT_APPFEEDBACK  @"system/submitAppFeedback"     // 帮助与反馈（反馈问题）
+
+// 判断真机还是模拟器
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR 1
+#elif TARGET_OS_IPHONE
+#define SIMULATOR 0
+#endif
+
+// 搜索功能
+#define GET_EQUIPMENT_VENDOR  @"inventory/getEquipmentVendor"   // 1.11 设备厂商查询
+#define GET_EQUIPMENT_MODEL  @"inventory/getEquipmentModel"     // 1.12 设备型号查询
+#define SEARCH_RESULT        @"inventory/page/searchResult"     // 5.3 地图资源搜索结果页面
+
+// 修改密码
+#define CHANGE_PWD           @"user/changePwd"              // 1.2 修改密码
+
+// 通用新增页面
+#define ADD                  @"inventory/page/add"          // 5.5 通用新增页面
+
+// 二维码
+#define QR_CODE              @"inventory/qrCode"            // 1.10 二维码
+
+// 消息列表
+#define GET_NEWS             @"inventory/getNews"           // 1.17 消息列表查询
+#define GET_DETAILS_NEWS     @"inventory/getDetailNews"     // 1.20 查看消息
+
+// 版本号
+#define CHECK_VERSION        @"system/checkVersion"         // 1.21 版本更新
+
+// 实体数据查询
+#define GET_ENTITIES         @"inventory/getEntities"       // 1.5 实体数据查询
+
+// 获取资源概览实体列表
+#define SURVEY_LIST          @"inventory/suyvey/list"       // 1.26 获取资源概览实体列表
+
+// 资源概览
+#define SURVEY_DETAIL        @"inventory/suyvey/"           // 1.27-1.31 资源概览详情
+
+// 实体数据搜索
+#define SEARCH_ENTITIES      @"inventory/searchEntities"    // 1.32 实体数据搜索
+
+// 资源附件新增/修改
+#define SAVE_ATTACHMENT      @"inventory/saveAttachment"    // 1.34 资源附件新增/修改
+
+// 获取资源附件
+#define GET_ATTACHMENTS      @"inventory/getAttachments"    // 1.35 获取资源附件
+
+// 删除资源附件
+#define DELETE_ATTACHMENT    @"inventory/deleteAttachment"  // 1.36 删除资源附件
+
+// 获取搜索历史记录
+#define GET_QUERY_RECORDS    @"inventory/getQueryRecords"   // 1.38 获取搜索历史记录
+
+// 删除搜索历史记录
+#define DEL_QUERY_RECORDS    @"inventory/deleteQueryRecords"// 1.39 删除搜索历史记录
+
+// 验证是否支持此实体功能
+#define VALIDATE_ENTITY_TYPEID @"inventory/validateEntityTypeId"
+
+// 解析二维码字符串
+#define ANALYSIS_QRCODE      @"inventory/analysisQrCode"     // 1.48 解析二维码字符串
+
+
+/**
+ *  查找反馈信息表中反馈定单ID关联的所有消息记录
+ */
+#define GET_ASSOCIATE_FEEDBACK_MESSAGES     @"inventory/getAssociateFeedbackMessages"
+
+/**
+ *  自定义条件查询反馈工单列表
+ */
+#define GET_FEEDBACK_ORDER_BYOREDR_CONDITIONS     @"inventory/getFeedbackOrdersByConditions"
+
+/**
+ *  改变反馈工单状态 已归档，已终止，和指派给其他人
+ */
+#define CHANGE_FEEDBACK_ORDER_STATUS     @"inventory/changeFeedbackOrderStatus"
+
+/**
+ *  发送并推送反馈信息
+ */
+#define SENDANDPUSH_FEEDBACK_MESSAGEFORIOS    @"inventory/sendAndPushFeedbackMessageForIos"
+
+/**
+ *  创建反馈工单
+ */
+#define CREATE_FEEFBACK_ORDER    @"inventory/createFeedbackOrder"
+
+/**
+ *  修改反馈工单
+ */
+#define UPDATE_FEEDBACK_ORDER    @"inventory/updateFeedbackOrder"
+
+/**
+ *  查询实体空间信息（光缆段啥的取经纬度）
+ */
+#define GET_ENTITY_SPATIAL_INFO    @"inventory/getEntitySpatialInfo"
+
+/**
+ *  、通讯录查询接口）
+ */
+#define GET_PHONE_BOOK_INFOS    @"inventory/getPhoneBookInfos"
+
+/**
+ *  获取工单指派人
+ */
+#define GET_DATAMAINTENACE_AND_LIABLE_PERSON    @"inventory/getDatamaintenanceAndLiablePerson"
+
+/**
+ *  自定义查询所属部门
+ */
+#define GET_OR_GINATIONS_BY_CONDITIONS    @"inventory/getOrginationsByConditions"
+
+/**
+ *  自定义查询指派人
+ */
+#define GET_ASSIGNERS_BY_CONDIIONS    @"inventory/getAssignersByConditions"
+
+
+/**
+ *提供综资系统中的地市、区县数据
+ *入参：
+ {
+	token: 'tokenStr'
+ }
+ */
+#define GET_REGIONS     @"inventory/getRegions"
+
+
+#define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
+#define FY_PAGE_SIZE              10                //分页pagesize
+#define sys_version_ForiOS7  ( [[[UIDevice currentDevice]  systemVersion] floatValue] >= 7.0)
+#define SYSTEM_VERSION  [[[UIDevice currentDevice] systemVersion] floatValue]
+
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+
+#define LINE_BORDER_WIDTH 1.0
+#define scale_width [[UIScreen mainScreen] bounds].size.width/320
+#define scale_height [[UIScreen mainScreen] bounds].size.height/568
+
+#define system_color [UIColor colorWithRed:253/255.0f green:95/255.0f blue:232/255.0f alpha:1.0f]
+#define login_tf_bgcolor [UIColor colorWithRed:214/255.0 green:213/255.0 blue:204/255.0 alpha:1.0]
+#define black_color_36 [UIColor colorWithRed:36/255.0f green:36/255.0f blue:36/255.0f alpha:1.0f]
+#define black_color_51 [UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]
+#define black_color_102 [UIColor colorWithRed:102/255.0f green:102/255.0f blue:102/255.0f alpha:1.0f]
+#define black_color_210 [UIColor colorWithRed:210/255.0f green:210/255.0f blue:210/255.0f alpha:1.0f]
+#define black_color_245 [UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1.0f]
+#define background_color_242 [UIColor colorWithRed:242/255.0f green:242/255.0f blue:242/255.0f alpha:1.0f]
+
+#define iPhone6_6s SCREEN_HEIGHT >= 667.0f
+
+#define IS_LOGIN               @"is_login" // 是否登录成功
+#define is_Remind              @"is_remind" // 是否提醒手势
+#define user_info              @"user_info"
+#define user_token             @"user_token"
+#define Login_name             @"login_name"
+#define Preview_User           @"preview_user" // 上一个用户
+#define user_password          @"user_password"
+#define DEVICE_TOKEN           @"deviceToken"
+// 获取Token值
+#define Token      [[NSUserDefaults standardUserDefaults] objectForKey:user_token]
+
+// 应用的Document目录
+#define DocumentDirectory      [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+// Document目录下专门存放资源附件图片目录
+#define Store_Photo_Dir        [DocumentDirectory stringByAppendingPathComponent:@"StorePhoto"]
+// Document目录下专门存放资源附件图片目录
+#define Store_Video_Dir        [DocumentDirectory stringByAppendingPathComponent:@"StoreVideo"]
+
+//主题颜色
+#define THEME_COLOR [UIColor colorWithRed:55/255.0f green:143/255.0f blue:245/255.0f alpha:1.0f]
+
+// 文字(附件文件最多个数)
+#define MAX_LENGTH  25
+
+// 请求类型
+typedef NS_ENUM(NSInteger, requestTag) {
+    createFeedbackOrderTag = 0,                 // 创建工单
+    updateFeedbackOrder,                        // 修改工单 资源信息
+    updateFeedbackOrderFeedbackType,            // 修改工单 问题分类
+    getAssociateFeedbackMessagesTag,            // 查找反馈信息表中反馈定单ID关联的所有消息记录
+    sendAndPushFeedbackMessageForIosTag,        // 发送并推送反馈信息
+    getDatamaintenanceAndLiablePersonTag,       // 获取工单指派人
+    changeFeedbackOrderStatusAssigneTag,        // 改变反馈工单状态 指派给其他人
+    changeFeedbackOrderStatusArchiveTag,        // 改变反馈工单状态 已归档
+    changeFeedbackOrderStatusStopTag,           // 改变反馈工单状态 已终止
+    getOrginationsByConditionsTag,              //自定义查询所属部门
+    getAssignersByConditionsTag,                // 自定义查询指派人
+    
+} ;
+
+// 定义搜索页面来源
+typedef NS_ENUM(NSUInteger, ViewFrom) {
+    ViewFromNavigate,                           // 导航栏过来的(不拿经纬度)
+    ViewFromLayer,                              // 地图图层过来的(传当前位置或者选定位置的经纬度)
+    ViewFromHomePage_NearResource,              // 首页附近资源过来的(系统获取当前位置经纬度)
+    ViewFromFeedBack,                           // 反馈协助搜索框过来的
+//    ViewFromResource_Maintance                // 首页资源维护过来的(系统获取当前位置经纬度)，默认范围：我维护
+};
+
+// 地图页面枚举
+typedef NS_ENUM(NSUInteger, MapPlacementType) {
+    MapPlacementTypeNone,                        // 来自地图本身,非落点情况
+    MapPlacementTypeSingle,                      // 单点落图
+    MapPlacementTypeMore                         // 多点落图
+};
+
+// 定义页面来源
+typedef NS_ENUM(NSUInteger, vcFrom) {
+    MapViewControllerVCFrom,                    // 地图本身
+    HomeMyCollectionVCFrom,                     // 首页收藏
+    HomeMyCollectionDetailVCFrom,               // 首页收藏详情
+    HomeSearchResultVCFrom,                     // 搜索结果页面(落点)
+    HomeSearchResultMyCollectionDetailVCFrom,   // 搜索结果收藏详情
+    HomeMaintance,                              // 首页资源维护
+    HomeMaintanceDetailVCFrom,                  // 首页资源维护详情
+    MapViewControllerQRCordVCFrom,              // 地图二维码扫描
+    HomeQRCodeVCFrom,                           // 首页二维码扫描
+};
+
+// 定义返回页面
+typedef NS_ENUM(NSUInteger, BackTo) {
+    BackToMyCollection,                         // 我的收藏(列表)
+    BackToCategory,                             // 分类(查询结果列表)
+    BackToMap,                                  // 地图
+    BackToAdd,                                  // 新增(首页，分类)
+    BackToMaintace,                             // 首页资源维护
+    BackToDetail                                // 详情页面(通过关联资源进入的)
+};
+
+typedef NS_ENUM(NSUInteger, MapLayerImageType) {
+    MapLayerImageTypeYS,                        // 原始图片
+    MapLayerImageTypeJF,                        // 机房
+};
+
+

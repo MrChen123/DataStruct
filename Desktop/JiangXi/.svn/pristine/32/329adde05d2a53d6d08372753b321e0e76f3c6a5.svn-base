@@ -1,0 +1,15 @@
+//
+//  SearchEquipmentViewController.h
+//  JiangXiResource
+//
+//  Created by xinjie on 16/8/29.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+/**
+ *  查询设备 VC
+ */
+#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+@interface SearchEquipmentViewController : BaseViewController
+
+@end

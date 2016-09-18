@@ -1,0 +1,302 @@
+
+//
+//  ResourceHistoryVC.m
+//  JiangXiResource
+//
+//  Created by 信辉科技 on 16/9/1.
+//  Copyright © 2016年 sinceretech. All rights reserved.
+//
+
+#import "ResourceHistoryVC.h"
+#import "MoreView.h"
+#import "CustomSegView.h"
+#import "ResourceHistoryModel.h"
+#import "ResourceHistoryCell.h"
+
+// 边距
+#define kPadding 5
+// 边框颜色
+#define kBorderColor [UIColor colorWithRed:0.00f green:0.51f blue:0.82f alpha:1.00f]
+// 按钮颜色
+#define kBtnSelectedColor UIColorFromHex(0x0185ce)
+// cellId
+#define kCellId     @"resourceHistoryCellId"
+
+typedef NS_ENUM(NSInteger, request) {
+    requestToday,           // 今天的记录
+    requestThreeDays,       // 最近三天
+    requestOneWeek,         // 最近一周
+};
+
+@interface ResourceHistoryVC ()
+<
+UITextFieldDelegate,
+CustomSegViewDelegate,
+UITableViewDelegate,
+UITableViewDataSource
+>
+// UI部分
+@property (nonatomic, strong) UITextField *searchTf;                // 宽带账号
+@property (nonatomic, strong) UIView *topView;                      // 搜索框和搜索按钮(头视图)
+@property (nonatomic, strong) CustomSegView *segView;               // 按钮视图(尾视图)
+@property (nonatomic, strong) UITableView *tableView;               // tableView
+// 数据部分
+@property (nonatomic, strong) NSMutableArray *dataArray;            // 数据部分（今天，最近三天，最近一周）
+@property (nonatomic, assign) NSInteger currentPage;                // 当前请求页
+@property (nonatomic, assign) request requestType;                  // 请求类型
+@end
+
+@implementation ResourceHistoryVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.title = @"历史记录";
+    
+    [self uiConfig];
+    
+    self.currentPage = 1;
+    
+    // 造假数据
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@"wuxinjie" forKey:@"username"];
+    [parameters setObject:@"asb123" forKey:@"password"];
+    [parameters setObject:[NSNumber numberWithBool:true] forKey:@"needPassword"];
+    if (!SIMULATOR) {
+        NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:DEVICE_TOKEN];
+        if (token != nil) {
+            [parameters setObject:token forKey:@"deviceToken"];
+        } else {
+            [parameters setObject:@"2," forKey:@"deviceToken"];
+        }
+    }
+    
+    // 字典转json
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData
+                                                 encoding:NSUTF8StringEncoding];
+    // josn数据存入字典
+    NSMutableDictionary *dicts = [[NSMutableDictionary alloc] initWithCapacity:0];
+    [dicts setValue:jsonString forKey:@"params"];
+    
+    BaseRequest *request = [[BaseRequest alloc] initWithUrl:Login params:dicts tag:0 requestMethod:YTKRequestMethodPost];
+    [request startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        NSDictionary *responseDict = request.responseJSONObject;
+        NSLog(@"%@", responseDict);
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        NSLog(@"failure:%@", request);
+    }];
+    
+    for (int i = 0; i < 5; i++) {
+        ResourceHistoryModel *model = [[ResourceHistoryModel alloc] init];
+        model.account = @"13912345671";
+        model.time = @"2016年8月25日11:35";
+        model.address = @"JKGD-20160823-001,南昌市新区万达华府1单元301室";
+        model.activeStatus = @"激活成功!";
+        [self.dataArray addObject:model];
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -----------辅助方法-----------
+// 返回
+- (void)backAction:(UIButton *)btn
+{
+    NSLog(@"%s", __func__);
+}
+
+// 根据宽带账号搜索
+- (void)searchAction:(UIButton *)btn
+{
+    
+}
+
+// 发起请求
+- (void)loadData
+{
+    /**
+     *  请求数据,入参有2个(requestType和currentPage)
+     */
+    
+}
+
+#pragma mark -----------代理-----------
+#pragma mark UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark CustomSegView Delegate
+- (void)clickSegItem:(NSInteger)index
+{
+    NSLog(@"%ld", index);
+}
+
+#pragma mark UITableView Delegate
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ResourceHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+    cell.model = self.dataArray[indexPath.row];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.dataArray.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%s", __func__);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = [tableView fd_heightForCellWithIdentifier:kCellId cacheByIndexPath:indexPath configuration:^(ResourceHistoryCell *cell) {
+        cell.model = self.dataArray[indexPath.row];
+    }];
+    return height;
+}
+
+#pragma mark -----------数据部分-----------
+- (NSMutableArray *)dataArray
+{
+    if (_dataArray == nil) {
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
+}
+
+#pragma mark -----------UI-----------
+- (void)uiConfig
+{
+    // 上层放搜索框
+    [self configTop];
+    
+    // 放入分段选择器
+    [self configMiddle];
+    
+    // 1个scrollView接两个tableView
+    [self configBottom];
+    
+}
+
+- (void)configTop
+{
+    self.topView = ({
+        UIView *view = [UIView new];
+        view.layer.borderColor = kBorderColor.CGColor;
+        view.layer.borderWidth = 1;
+        
+        
+        [self.view addSubview:view];
+        
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.equalTo(self.view).insets(UIEdgeInsetsMake(kPadding, kPadding, 0, kPadding));
+            make.height.mas_equalTo(44);
+        }];
+        
+        view;
+    });
+    
+    self.searchTf = ({
+        UITextField *tf = [UITextField new];
+        tf.placeholder = @"请输入宽带账号";
+        tf.layer.borderColor = kBorderColor.CGColor;
+        tf.layer.borderWidth = 1;
+        tf.borderStyle = UITextBorderStyleNone;
+        tf.clearButtonMode = UITextFieldViewModeAlways;
+        tf.delegate = self;
+        [self.topView addSubview:tf];
+        
+        tf;
+    });
+    
+    UIButton *searchBtn = ({
+        UIButton *btn = [UIButton new];
+        [btn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(searchAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.topView addSubview:btn];
+        
+        btn;
+    });
+    
+    [self.searchTf mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self.topView).insets(UIEdgeInsetsZero);
+        make.right.equalTo(searchBtn.mas_left);
+    }];
+    
+    [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.right.equalTo(self.topView).insets(UIEdgeInsetsZero);
+        make.width.mas_equalTo(40);
+    }];
+
+}
+
+- (void)configMiddle
+{
+    self.segView = ({
+        CustomSegView *seg = [CustomSegView new];
+        [self.view addSubview:seg];
+        
+        [seg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.topView.mas_bottom).offset(kPadding);
+            make.left.right.equalTo(self.view).insets(UIEdgeInsetsMake(0, kPadding, kPadding, kPadding));
+            make.height.mas_equalTo(40);
+        }];
+        
+        seg.isDifferent = YES;
+        seg.titleArray = @[@"最近三天",
+                           @"最近一周"];
+        seg.delegate = self;
+        
+        seg;
+    });
+}
+
+- (void)configBottom
+{
+    self.tableView = ({
+        UITableView *tableView = [UITableView new];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [tableView registerClass:[ResourceHistoryCell class] forCellReuseIdentifier:kCellId];
+        tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        tableView.estimatedRowHeight = 60;
+        
+        // 给tableView添加刷新视图
+        WeakSelf;
+        // 下拉刷新
+        tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            weakSelf.currentPage = 1;
+        }];
+        
+        // 设置自动切换透明度(在导航栏下面自动隐藏)
+        tableView.mj_header.automaticallyChangeAlpha = YES;
+        
+        // 上拉加载下一页
+        tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            weakSelf.currentPage++;
+        }];
+        
+        [self.view addSubview:tableView];
+        
+        // 布局
+        [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.view).insets(UIEdgeInsetsMake(0, kPadding, kPadding, kPadding));
+            make.top.equalTo(self.segView.mas_bottom).offset(kPadding);
+        }];
+        
+        tableView;
+    });
+}
+
+@end
