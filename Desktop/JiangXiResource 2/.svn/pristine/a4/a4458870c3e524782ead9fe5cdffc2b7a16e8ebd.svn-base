@@ -1,1 +1,0 @@
-link ../../../ZXingObjC/ZXingObjC/oned/ZXingObjCOneD.h

@@ -1,1 +1,0 @@
-link ../../../ZXingObjC/ZXingObjC/qrcode/multi/ZXQRCodeMultiReader.h

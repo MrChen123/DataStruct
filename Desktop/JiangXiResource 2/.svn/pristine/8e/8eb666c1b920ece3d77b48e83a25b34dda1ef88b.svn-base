@@ -1,1 +1,0 @@
-link ../../../ZXingObjC/ZXingObjC/qrcode/decoder/ZXQRCodeDecoderMetaData.h

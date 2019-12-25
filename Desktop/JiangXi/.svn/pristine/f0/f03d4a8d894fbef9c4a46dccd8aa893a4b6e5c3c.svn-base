@@ -1,1 +1,0 @@
-link ../../../ZXingObjC/ZXingObjC/oned/ZXCode39Reader.h

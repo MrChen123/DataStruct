@@ -1,1 +1,0 @@
-link ../../../ZXingObjC/ZXingObjC/aztec/encoder/ZXAztecSimpleToken.h

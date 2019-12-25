@@ -1,1 +1,0 @@
-link ../../../ZXingObjC/ZXingObjC/client/result/ZXCalendarParsedResult.h
