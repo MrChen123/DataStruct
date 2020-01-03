@@ -8,6 +8,9 @@
 
 #ifndef Status_h
 #define Status_h
+
+#include <stdlib.h>	
+
 /* 状态码 */
 #define    TRUE        1            //真
 #define    FALSE        0            //假

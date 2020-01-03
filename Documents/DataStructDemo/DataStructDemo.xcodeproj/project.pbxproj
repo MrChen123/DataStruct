@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5A09FE7A23B1F05A0042E3B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A09FE7923B1F05A0042E3B5 /* main.m */; };
+		5A9E025723BEE62900D5D48C /* SequenceList.c in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E025523BEE62900D5D48C /* SequenceList.c */; };
+		5AF7C0CF23BF3D8400D0C823 /* Union.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AF7C0CA23BF3D8400D0C823 /* Union.c */; };
+		5AF7C0D023BF3D8400D0C823 /* MergeSqList.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AF7C0CD23BF3D8400D0C823 /* MergeSqList.c */; };
+		5AF7C0D523BF3DFB00D0C823 /* SinglyLinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 5AF7C0D323BF3DFB00D0C823 /* SinglyLinkedList.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +32,14 @@
 		5A09FE8023B1F95F0042E3B5 /* Status.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		5A09FE8323B1FBE70042E3B5 /* Scanf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scanf.h; sourceTree = "<group>"; };
 		5A09FE8423B33C760042E3B5 /* ▲课本算法实现.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "▲课本算法实现.zip"; sourceTree = "<group>"; };
+		5A9E025523BEE62900D5D48C /* SequenceList.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SequenceList.c; sourceTree = "<group>"; };
+		5A9E025623BEE62900D5D48C /* SequenceList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SequenceList.h; sourceTree = "<group>"; };
+		5AF7C0CA23BF3D8400D0C823 /* Union.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Union.c; sourceTree = "<group>"; };
+		5AF7C0CB23BF3D8400D0C823 /* Union.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Union.h; sourceTree = "<group>"; };
+		5AF7C0CD23BF3D8400D0C823 /* MergeSqList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MergeSqList.c; sourceTree = "<group>"; };
+		5AF7C0CE23BF3D8400D0C823 /* MergeSqList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeSqList.h; sourceTree = "<group>"; };
+		5AF7C0D323BF3DFB00D0C823 /* SinglyLinkedList.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SinglyLinkedList.c; sourceTree = "<group>"; };
+		5AF7C0D423BF3DFB00D0C823 /* SinglyLinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglyLinkedList.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +72,60 @@
 		5A09FE7823B1F05A0042E3B5 /* DataStructDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5A9E025323BEE5F300D5D48C /* 02 */,
 				5A09FE8423B33C760042E3B5 /* ▲课本算法实现.zip */,
 				5A09FE7923B1F05A0042E3B5 /* main.m */,
 				5A09FE8023B1F95F0042E3B5 /* Status.h */,
 				5A09FE8323B1FBE70042E3B5 /* Scanf.h */,
 			);
 			path = DataStructDemo;
+			sourceTree = "<group>";
+		};
+		5A9E025323BEE5F300D5D48C /* 02 */ = {
+			isa = PBXGroup;
+			children = (
+				5AF7C0D223BF3DD100D0C823 /* 04 SinglyLinkedList */,
+				5AF7C0C923BF3D8400D0C823 /* 02 Union */,
+				5AF7C0CC23BF3D8400D0C823 /* 03 MergeSqList */,
+				5A9E025423BEE60900D5D48C /* 01 SequenceList */,
+			);
+			path = 02;
+			sourceTree = "<group>";
+		};
+		5A9E025423BEE60900D5D48C /* 01 SequenceList */ = {
+			isa = PBXGroup;
+			children = (
+				5A9E025523BEE62900D5D48C /* SequenceList.c */,
+				5A9E025623BEE62900D5D48C /* SequenceList.h */,
+			);
+			path = "01 SequenceList";
+			sourceTree = "<group>";
+		};
+		5AF7C0C923BF3D8400D0C823 /* 02 Union */ = {
+			isa = PBXGroup;
+			children = (
+				5AF7C0CA23BF3D8400D0C823 /* Union.c */,
+				5AF7C0CB23BF3D8400D0C823 /* Union.h */,
+			);
+			path = "02 Union";
+			sourceTree = "<group>";
+		};
+		5AF7C0CC23BF3D8400D0C823 /* 03 MergeSqList */ = {
+			isa = PBXGroup;
+			children = (
+				5AF7C0CD23BF3D8400D0C823 /* MergeSqList.c */,
+				5AF7C0CE23BF3D8400D0C823 /* MergeSqList.h */,
+			);
+			path = "03 MergeSqList";
+			sourceTree = "<group>";
+		};
+		5AF7C0D223BF3DD100D0C823 /* 04 SinglyLinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				5AF7C0D323BF3DFB00D0C823 /* SinglyLinkedList.c */,
+				5AF7C0D423BF3DFB00D0C823 /* SinglyLinkedList.h */,
+			);
+			path = "04 SinglyLinkedList";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +185,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AF7C0CF23BF3D8400D0C823 /* Union.c in Sources */,
+				5AF7C0D523BF3DFB00D0C823 /* SinglyLinkedList.c in Sources */,
+				5A9E025723BEE62900D5D48C /* SequenceList.c in Sources */,
+				5AF7C0D023BF3D8400D0C823 /* MergeSqList.c in Sources */,
 				5A09FE7A23B1F05A0042E3B5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
