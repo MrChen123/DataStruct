@@ -56,22 +56,78 @@ void DestroyList_L(LinkList *L)
  ┃(03)销毁单链表L，连同通结点一起销毁。 ┃
  ┗━━━━━━━━━━━━━━━━━━━*/
 
-Status ListEmpty_L(LinkList L);
+Status ListEmpty_L(LinkList L)
+{
+    if (L != NULL && L->next == NULL) {
+        return TRUE;
+    }
+    return FALSE;
+}
 /*━━━━━━━━━━━━━━━┓
  ┃(04)判断单链表L是否为空。     ┃
  ┗━━━━━━━━━━━━━━━*/
 
-int ListLength_L(LinkList L);
+int ListLength_L(LinkList L)
+{
+    int length = 0;
+    LinkList p;
+    if (L) {
+        p = L->next;
+        while (p) {
+            length++;
+            p = p->next;
+        }
+    }
+    
+    return length;
+}
 /*━━━━━━━━━━━━┓
  ┃(05)返回单链表L元素个数 ┃
  ┗━━━━━━━━━━━━*/
 
-Status GetElem_L(LinkList L, int i, ElemType *e);
+Status GetElem_L(LinkList L, int i, ElemType *e)
+{
+    int j = 0;
+    LinkList p;
+    if (L) {
+        p = L->next;
+        j++;
+        while (p && j <= i) {
+            p = p->next;
+        }
+        
+        if (!p || j > i) {
+            return ERROR;
+        }
+        
+        *e = p->data;
+        return OK;
+    }
+    return ERROR;
+}
 /*━━━━━━━━━━━━━━━━━━━┓
  ┃(06)算法2.8：用e接收单链表L中第i个元素┃
  ┗━━━━━━━━━━━━━━━━━━━*/
 
-int LocateElem_L(LinkList L, ElemType e, Status(Compare)(ElemType, ElemType));
+int LocateElem_L(LinkList L, ElemType e, Status(Compare)(ElemType, ElemType))
+{
+    int i = 0;
+    LinkList p;
+    if (L) {
+        p = L->next;
+        ++i;
+        while (p && !Compare(e, p->data)) {
+            p = p->next;
+            ++i;
+        }
+        
+        if (p) {
+            return i;
+        }
+        return ERROR;
+    }
+    return i;
+}
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
  ┃(07)返回单链表L中第一个与e满足Compare关系的元素位序。 ┃
  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
