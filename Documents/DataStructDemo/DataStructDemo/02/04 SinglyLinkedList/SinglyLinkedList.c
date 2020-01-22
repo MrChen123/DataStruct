@@ -124,7 +124,7 @@ int LocateElem_L(LinkList L, ElemType e, Status(Compare)(ElemType, ElemType))
         if (p) {
             return i;
         }
-        return ERROR;
+        return 0;
     }
     return i;
 }
